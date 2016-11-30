@@ -39,9 +39,9 @@ body.landing {
     -webkit-transform: scaleX(.9) translateY(3rem);
     -moz-transform: scaleX(.9) translateY(3rem);
     transform: scaleX(.9) translateY(3rem);
-    -webkit-transition: all .25s ease-in-out;
-    -moz-transition: all .25s ease-in-out;
-    transition: all .25s ease-in-out;
+    -webkit-transition: all .7s cubic-bezier(.42, 0, .27, 1.47);
+    -moz-transition: all .7s cubic-bezier(.42, 0, .27, 1.47);
+    transition: all .7s cubic-bezier(.42, 0, .27, 1.47);
     -webkit-transition-delay: .2s;
     -moz-transition-delay: .2s;
     transition-delay: .2s;
