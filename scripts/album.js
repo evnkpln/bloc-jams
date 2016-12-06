@@ -28,6 +28,22 @@ var albumMarconi = {
     ]
 };
 
+var albumGatherers = {
+    title: 'Lost Lands',
+    artist: 'The Gatherers',
+    label: 'Westwind',
+    year: '2016',
+    albumArtUrl: 'assets/images/album_covers/05.png',
+    songs: [
+        {title: 'Dead Tree', duration: '3:43' },
+        {title: 'Lost in the Woods', duration: '2:15'},
+        {title: 'Burning Bushes', duration: '0:57'},
+        {title: 'Sky Palace', duration: '2:27'},
+        {title: 'Journey to Nowhere', duration: '9:45'},
+        {title: 'Lost but Seeking', duration: '2:05'}
+    ]
+};
+
 var createSongRow = function (songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -62,3 +78,12 @@ var setCurrentAlbum = function(album){
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 }
+var albums = [albumPicasso, albumMarconi, albumGatherers];
+var currentAlbum = 0;
+
+var albImage = document.getElementsByClassName('album-cover-art')[0];
+albImage.addEventListener('click',function (event) {
+    currentAlbum++;
+    if(currentAlbum >= albums.length) currentAlbum = 0;
+    setCurrentAlbum(albums[currentAlbum]);
+});
