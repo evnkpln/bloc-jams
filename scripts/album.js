@@ -137,6 +137,5 @@ window.onload = function() {
         });
     }
     
-    songRows[i].addEve
 }
 
