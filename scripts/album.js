@@ -23,13 +23,12 @@ var createSongRow = function (songNumber, songName, songLength) {
             if(currentSoundFile.isPaused()){
                 currentSoundFile.play();
                 $(this).html(pauseButtonTemplate);
-                $('.main-controls .play-pause').html(playerBarPauseButton);
+                $toggleButton.html(playerBarPauseButton);
             } else{
                 
                 $(this).html(playButtonTemplate);
                 currentSoundFile.pause();
-                setSong(songNumber);
-                $('.main-controls .play-pause').html(playerBarPlayButton);
+                $toggleButton.html(playerBarPlayButton);
             }
         } else {
             var currentlyPlayingSongElement = getSongNumberCell(currentlyPlayingSongNumber);
@@ -109,6 +108,20 @@ var previousSong = function(){
     
 };
 
+var togglePlayFromPlayerBar = function () {
+    if(currentSoundFile){
+        if(currentSoundFile.isPaused()){
+            $toggleButton.html(playerBarPauseButton);
+            getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+            currentSoundFile.play();
+        }else{
+            $toggleButton.html(playerBarPlayButton);
+            getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
+            currentSoundFile.pause();
+        }
+    }
+};
+
 var updatePlayerBarSong = function() {
     if(currentSongFromAlbum === null) {
         $('.song-name').empty();
@@ -120,7 +133,7 @@ var updatePlayerBarSong = function() {
         $('.artist-name').html(currentAlbum.artist);
         $('.artist-song-mobile').html(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     }
-    $('.main-controls .play-pause').html(playerBarPauseButton);
+    $toggleButton.html(playerBarPauseButton);
 };
 
 var setSong = function(songNumber) {
@@ -158,6 +171,7 @@ var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
 var currentSoundFile = null;
 var currentVolume = 80;
+var $toggleButton = $('.main-controls .play-pause');
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
@@ -165,5 +179,6 @@ $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+    $toggleButton.click(togglePlayFromPlayerBar);
 });
 
